@@ -48,6 +48,12 @@ Interesting details
 - Don't use `this` anywhere
 - Hilarious feedback
 
+Do like
+- Simplicity
+
+Don't like
+- Refactoring!
+
 Going forwards
 - Immutable.js
 - React.js (isomorphic?)
