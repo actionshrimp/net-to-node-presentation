@@ -1,0 +1,78 @@
+Experience report wish-list:
+- From https://skillsmatter.com/skillscasts/6032-more-open-source-systems-please
+
+1. Context
+2. Limitations in "organisation"
+3. Values in the group
+4. Alternatives
+5. High level view
+6. Interesting details
+
+Context
+- 7digital.com - old website + history
+- Responsive design (old website postage stamp)
+- App sitting on top of API
+- Use API fully - no DB / legacy deps
+
+Limitations
+- Wanted to release new design in one go for HD launch
+- Livesearch as an initial attempt at gradually releasing stuff
+- Design process bottleneck - multiple iterations of each page
+
+Values in the group
+- FP(?)
+- Frustrated with windows ecosystem
+- Enjoyed node from client side build tools, all pretty good at it
+- Simplicity of single language across FE+BE
+
+Alternatives
+- Patching the existing webstore with the new design
+- structure of existing app
+- Handlebars - client side, tests
+
+High level view of component (systems level)
+- Middlewares
+- Sections
+- API client / calls
+- Redis
+- Caches
+
+Interesting details
+- Windows specific stuff
+- Web.config switching, beta cookie
+- Basket prototype
+- Going live IIS rewrite problems
+- Sharing state between applications, again going live / sentinel work. 
+- fig.yml for infrastructure (being renamed to docker compose)
+- Domains / error handling - event loop
+- Don't use `this` anywhere
+- Hilarious feedback
+
+Going forwards
+- Immutable.js
+- React.js (isomorphic?)
+- Much more automation of systems
+
+Do differently?
+- Break out of .NET container app much earlier!
+
+
+
+
+-------------------------------------------------------------------------------
+- Beta cookie
+- IISNode - web.config
+- prototype growing out of control
+- processCount
+- debugging pretty tricky
+- web.config to handle 1 endpoint at a time
+- Sharing state with cookies while migrating
+- sharing views (NUSTACHE!)
+- basket endpoint load testing with old code
+- Fig + docker for redis + sentinel
+- IIS rewrite caching on release: fixed... iisnode upgrade, querystring thing
+
+- Next steps:
+    - React
+    - Linux
+    - AWS
