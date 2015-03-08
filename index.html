@@ -117,13 +117,13 @@
                 <section>
                     <h2>Spark views</h2>
                     <p class="fragment">Arbitrary code, e.g. RenderAction:</p>
-                    <pre class="fragment" style="width: 90%;">
+                    <pre class="fragment" style="width: 90%;"><code>
 &lt;div class="first column width3"&gt;
 # Html.RenderAction("Index", "Tracks", new { artistId = Model.ReleaseTile.ArtistId, releaseId = Model.ReleaseTile.ProductId, salePrice = Model.ReleaseTile.PriceValue, productUrl = Model.ReleaseTile.ProductUrl, artistUrl = Model.ReleaseTile.DisplayedArtistUrl, displayedArtistName = Model.ReleaseTile.DisplayedArtistName, IsPreOrder = Model.IsPreOrder, CheckPurchaseDetails = Model.IncludesPurchaseDetails });
 
 # Html.RenderAction("Index", "AlsoByRelease", new { id = Model.ReleaseTile.ArtistId, BasedOnReleaseId = Model.ReleaseTile.ProductId });
 &lt;/div&gt;
-                    </pre>
+                    </code></pre>
                     <p class="fragment">Nice and modular, but hard to reason about</p>
                     <p class="fragment">Poor performance - spins up a whole MVC context each time</p>
                 </section>
@@ -153,6 +153,25 @@
                     <p class="fragment">Looked out for X-7D-Responsive-Views header being sent (using header adjusting browser plugins)</p>
                     <p class="fragment">Switch out view engine based on that</p>
                     <p class="fragment">(Also checked your IP was based in the 7d office)</p>
+                </section>
+                <section>
+                    <h2>Branching pretty hard</h2>
+                    <pre><code>
+[HasResponsiveView("sign-in")]
+public ActionResult Index(string @return)
+{
+	if (_httpContext.IsResponsive())
+	{
+		var signInViewModel = BuildResponsiveViewModel(@return);
+		return View("SignIn", signInViewModel);
+	}
+	else
+	{
+		var signInViewModel = BuildViewModel(@return);
+		return View("SignIn", signInViewModel);
+	}
+}
+                    </code></pre>
                 </section>
                 <section>
                     <h2>PDiff tests</h2>
