@@ -46,18 +46,95 @@
                 </section>
                 <section>
                     <h2>7digital.com</h2>
-                    <img src="img/dotcom-homepage.png">
+                    <img src="img/consumer.jpg" style="height: 180px; border: none; margin-bottom: 0;" class="fragment">
+                    <br />
+                    <img src="img/webstore-on-api.svg" style="border: none; margin-top: 0">
                 </section>
                 <section>
                     <h2>Before</h2>
                     <img src="img/previous-dotcom.png">
                 </section>
                 <section>
-                    <h2>7digital.com</h2>
+                    <h2>On mobile...<h2>
+                    <img src="img/old-dotcom-mobile.png" style="border: none;">
+                </section>
+                <section>
+                    <h2>m.7digital.com</h2>
+                    <img src="img/m-dot-website.png" style="border: none; float: left; width: 50%;">
+                    <ul style="float: right; width: 40%">
+                        <li class="fragment">No editorial content (interviews, etc)</li>
+                        <li class="fragment">Wasn't our project</li>
+                        <li class="fragment">Lack of consistency</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Hi-Res Audio</h2>
+                    <img src="img/high-quality-audio.jpg" style="float: left; width: 50%;">
+                    <ul style="float: right; width: 40%">
+                        <li class="fragment">Visual refresh</li>
+                        <li class="fragment">Avoid shoehorning</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>New design</h2>
                     <img src="img/webstore-desktop-mobile.png">
                 </section>
                 <section>
-                    <h2>Overview</h2>
+                    <h2>State of the frontend</h2>
+                    <ul>
+                        <li class="fragment">Frontend code a bit underloved</li>
+                        <li class="fragment">Styles in particular</li>
+                        <li class="fragment">Markup pretty messy, no clear class structure</li>
+                        <li class="fragment">Wasn't hugely modular due to the way it had grown</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Incremental rollout</h2>
+                </section>
+                <section>
+                    <h2>Gave it a go</h2>
+                    <img src="img/livesearch.png">
+                </section>
+                <section>
+                    <h2>But no clear path</h2>
+                    <img src="img/no-clear-path.jpg" style="width: 50%; float: left;">
+                    <ul style="float: right; width: 40%">
+                        <li class="fragment">How to avoid clashes between designs? Particularly for bigger chunks of the page, layout etc.</li>
+                        <li class="fragment">Refactoring CSS - painful!</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>No exciting Hi-Res launch :(</h2>
+                    <img src="img/product-launch.jpg">
+                </section>
+                <section>
+                    <h2>State of the backend</h2>
+                    <ul>
+                        <li class="fragment">.NET project, pretty good shape, well tested</li>
+                        <li class="fragment">Performance wasn't the greatest - e.g. No async/await to make parallel API calls (old .NET version)</li>
+                    </ul>
+                </section>
+                <section>
+                    <p class="fragment">RenderAction - spins up a whole MVC context each time:</p>
+                    <pre class="fragment" style="width: 90%;">
+&lt;div class="first column width3"&gt;
+# Html.RenderAction("Index", "Tracks", new { artistId = Model.ReleaseTile.ArtistId, releaseId = Model.ReleaseTile.ProductId, salePrice = Model.ReleaseTile.PriceValue, productUrl = Model.ReleaseTile.ProductUrl, artistUrl = Model.ReleaseTile.DisplayedArtistUrl, displayedArtistName = Model.ReleaseTile.DisplayedArtistName, IsPreOrder = Model.IsPreOrder, CheckPurchaseDetails = Model.IncludesPurchaseDetails });
+
+# Html.RenderAction("Index", "AlsoByRelease", new { id = Model.ReleaseTile.ArtistId, BasedOnReleaseId = Model.ReleaseTile.ProductId });
+&lt;/div&gt;
+                    </pre>
+                    <p class="fragment">Modular, but a bit hard to reason about</p>
+                </section>
+                <section>
+                    <p class="fragment">Had no plans to ditch it though</p>
+                </section>
+                <section>
+                    <img src="img/handlebars.png">
+                </section>
+                <section>
+                    <h2>PDiff tests</h2>
+                </section>
+                <section>
                     <!-- Mr Tickle sneaking into DB -->
                 </section>
             </div>
