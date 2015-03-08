@@ -115,7 +115,8 @@
                     </ul>
                 </section>
                 <section>
-                    <p class="fragment">RenderAction - spins up a whole MVC context each time:</p>
+                    <h2>Spark views</h2>
+                    <p class="fragment">Arbitrary code, e.g. RenderAction:</p>
                     <pre class="fragment" style="width: 90%;">
 &lt;div class="first column width3"&gt;
 # Html.RenderAction("Index", "Tracks", new { artistId = Model.ReleaseTile.ArtistId, releaseId = Model.ReleaseTile.ProductId, salePrice = Model.ReleaseTile.PriceValue, productUrl = Model.ReleaseTile.ProductUrl, artistUrl = Model.ReleaseTile.DisplayedArtistUrl, displayedArtistName = Model.ReleaseTile.DisplayedArtistName, IsPreOrder = Model.IsPreOrder, CheckPurchaseDetails = Model.IncludesPurchaseDetails });
@@ -123,13 +124,35 @@
 # Html.RenderAction("Index", "AlsoByRelease", new { id = Model.ReleaseTile.ArtistId, BasedOnReleaseId = Model.ReleaseTile.ProductId });
 &lt;/div&gt;
                     </pre>
-                    <p class="fragment">Modular, but a bit hard to reason about</p>
+                    <p class="fragment">Nice and modular, but hard to reason about</p>
+                    <p class="fragment">Poor performance - spins up a whole MVC context each time</p>
                 </section>
                 <section>
-                    <p class="fragment">Had no plans to ditch it though</p>
+                    <p class="fragment">Had no plans to ditch backend, keen to ditch views</p>
+                    <p class="fragment">Markup needed reworking anyway for the re-design!</p>
                 </section>
                 <section>
-                    <img src="img/handlebars.png">
+                    <h2>Mustache</h2>
+                    <img src="img/mustache.png">
+                </section>
+                <section>
+                    <img src="img/nustache.png">
+                </section>
+                <section>
+                    <p class="fragment">No arbitrary code was super appealing after Spark (although kinda won over by React.js's approach these days..)</p>
+                    <p class="fragment">More testable - everything in view models</p>
+                    <p class="fragment">Could prototype designs using node mustache with dummy data (our frontend build used node to run Grunt.js anyway and had done for some time)</p>
+                </section>
+                <section>
+                    <p class="fragment">Fetching dummy data is a pain, just hook in this handy node 7d api client!</p>
+                    <img class="fragment" src="img/node-7d-api-client.png">
+                    <p class="fragment">Run on linux, no spinning up Windows VM...</p>
+                </section>
+                <section>
+                    <h2>Both designs in parallel - feature switch</h2>
+                    <p class="fragment">Looked out for X-7D-Responsive-Views header being sent</p>
+                    <p class="fragment">Switch out view engine based on that</p>
+                    <p class="fragment">(Also checked your IP was based in the 7d office)</p>
                 </section>
                 <section>
                     <h2>PDiff tests</h2>
