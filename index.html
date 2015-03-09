@@ -45,6 +45,12 @@
                     </p>
                 </section>
                 <section>
+                    <ul>
+                        <li>How we did it</li>
+                        <li>Why??</li>
+                    </ul>
+                </section>
+                <section>
                     <h2>7digital.com</h2>
                     <img src="img/consumer.jpg" style="height: 180px; border: none; margin-bottom: 0;" class="fragment">
                     <br />
@@ -139,12 +145,12 @@
                     <img src="img/nustache.png">
                 </section>
                 <section>
-                    <p class="fragment">No arbitrary code was super appealing after Spark (although kinda won over by React.js's approach these days..)</p>
+                    <p>No arbitrary code was super appealing after Spark (although kinda won over by React.js's approach these days..)</p>
                     <p class="fragment">More testable - everything in view models</p>
-                    <p class="fragment">Could prototype designs using node mustache with dummy data (our frontend build used node to run Grunt.js anyway and had done for some time)</p>
+                    <p class="fragment">Prototype designs with node mustache + dummy data (we used node for Grunt for FE build anyway)</p>
                 </section>
                 <section>
-                    <p class="fragment">Fetching dummy data is a pain, just hook in this handy node 7d api client!</p>
+                    <p>Fetching dummy data is a pain, just hook in this handy node 7d api client!</p>
                     <img class="fragment" src="img/node-7d-api-client.png">
                     <p class="fragment">Run on linux, no spinning up Windows VM...</p>
                 </section>
@@ -158,25 +164,61 @@
                     <h2>Branching pretty hard</h2>
                     <pre><code>
 [HasResponsiveView("sign-in")]
-public ActionResult Index(string @return)
+public ActionResult Index(string returnUrl)
 {
 	if (_httpContext.IsResponsive())
 	{
-		var signInViewModel = BuildResponsiveViewModel(@return);
-		return View("SignIn", signInViewModel);
+		var signInViewModel = BuildResponsiveViewModel(returnUrl);
 	}
 	else
 	{
-		var signInViewModel = BuildViewModel(@return);
-		return View("SignIn", signInViewModel);
+		var signInViewModel = BuildViewModel(returnUrl);
 	}
+	return View("SignIn", signInViewModel);
 }
                     </code></pre>
                 </section>
                 <section>
-                    <h2>PDiff tests</h2>
+                    <ul>
+                        <li>Noticing it was quicker to implement pages in prototype</li>
+                        <li class="fragment">Bottlenecked a bit by CSS due to large overhaul</li>
+                        <li class="fragment">FE guy WFH on a Mac - Windows environment a bit unfriendly</li>
+                        <li class="fragment">Tools worked better - SCSS build in particular (Vim)</li>
+                    </ul>
                 </section>
                 <section>
+                    <h2>Putting something live</h2>
+                    <ul>
+                        <li>Public beta</li>
+                        <li class="fragment">Changed our magic header to be a cookie</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>IISNode</h2>
+                    <p>(Used for hosting node apps on Azure)</p>
+                    <img src="img/iis-node.png">
+                </section>
+                <section>
+                    <pre><code>
+&lt;handlers&gt;
+  &lt;add name="iisnode" path="reboot/server.js"
+       verb="*" modules="iisnode" /&gt;
+&lt;/handlers&gt;
+                    </code></pre>
+                    <pre><code>
+&lt;rule name="node-app-if-header" stopProcessing="true"&gt;
+  &lt;conditions&gt;
+    &lt;add input="{HTTP_X_7D_RESPONSIVE_VIEWS}" pattern="^t.*$" /&gt;
+  &lt;/conditions&gt;
+  &lt;action type="Rewrite" url="reboot/server.js" /&gt;
+&lt;/rule&gt;
+                    </code></pre>
+                </section>
+                <section>
+                    <img src="img/node-exe.png">
+                </section>
+                <section>
+                    <!-- h2>PDiff tests</h2-->
                     <!-- Mr Tickle sneaking into DB -->
                 </section>
             </div>
