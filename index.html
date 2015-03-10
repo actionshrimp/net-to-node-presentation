@@ -130,8 +130,8 @@
 # Html.RenderAction("Index", "AlsoByRelease", new { id = Model.ReleaseTile.ArtistId, BasedOnReleaseId = Model.ReleaseTile.ProductId });
 &lt;/div&gt;
                     </code></pre>
-                    <p class="fragment">Nice and modular, but hard to reason about</p>
-                    <p class="fragment">Poor performance - spins up a whole MVC context each time</p>
+                    <p class="fragment">(RenderAction has poor performance - spins up a whole MVC context each time)</p>
+                    <p class="fragment">Nice and modular, but hard to reason about whole pages. Never actually rendered a lot of the sub-Actions on their own</p>
                 </section>
                 <section>
                     <p>Had no plans to ditch backend, keen to ditch views</p>
@@ -145,9 +145,10 @@
                     <img src="img/nustache.png">
                 </section>
                 <section>
-                    <p>No arbitrary code was super appealing after Spark (although kinda won over by React.js's approach these days..)</p>
+                    <p>No arbitrary code was super appealing after Spark (although won over by React.js's approach these days..)</p>
                     <p class="fragment">More testable - everything in view models</p>
-                    <p class="fragment">Prototype designs with node mustache + dummy data (we used node for Grunt for FE build anyway)</p>
+                    <p class="fragment">Prototype designs with node mustache (we used Grunt for FE build anyway)</p>
+                    <p class="fragment">Use dummy data to mock up views</p>
                 </section>
                 <section>
                     <p>Fetching dummy data is a pain, just hook in this handy node 7d api client!</p>
