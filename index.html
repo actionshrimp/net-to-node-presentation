@@ -38,8 +38,8 @@
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
                 <section>
-                    <h1>.NET to Node</h1>
-                    <h3>An experience</h3>
+                    <h1>Redesigning 7digital.com</h1>
+                    <h3>.NET to Node</h3>
                     <p>
                         <small><a href="http://www.actionshrimp.com">Dave Aitken</a> / <a href="http://twitter.com/actionshrimp">@actionshrimp</a></small>
                     </p>
@@ -197,7 +197,7 @@ public ActionResult Index(string returnUrl)
                     <img class="fragment" src="img/webstore-on-api-with-db.svg" style="border: none; margin-top: 0">
                 </section>
                 <section>
-                    <p>Decided to push ahead and just use node.js</p>
+                    <p>Decided to push ahead and just use node</p>
                     <img src="img/node-js.jpg">
                 </section>
                 <section>
@@ -210,9 +210,11 @@ public ActionResult Index(string returnUrl)
                 </section>
                 <section>
                     <h2>Oh yeahhh</h2>
+                    <p>Also handles multiple node processes per server/LBing them</p>
                     <img src="img/node-exe.png">
                 </section>
                 <section>
+                    <h2>End of Feb '14</h2>
                     <ul>
                         <li>Check it works in live</li>
                         <li class="fragment">Deploy smallest piece that gets heavy traffic</li>
@@ -239,7 +241,7 @@ public ActionResult Index(string returnUrl)
                 <section>
                     <img src="img/beta-header.png">
                     <ul>
-                        <li>Public beta</li>
+                        <li>Public beta (April '14)</li>
                         <li class="fragment">Added a cookie to do the same thing as our magic header</li>
                     </ul>
                 </section>
@@ -317,10 +319,92 @@ expressApp.use(userDetails);
                 <section>
                     <img src="img/not-ready.png">
                     <ul>
-                        <li class="fragment">People who opt in more tolerant</li>
+                        <li class="fragment">People who opt in are a bit more tolerant</li>
                         <li class="fragment">Easy to get straight back to the old version</li>
                         <li class="fragment">Worked on getting critical path done first</li>
                     </ul>
+                </section>
+                <section>
+                    <h2>Done! (Dec '14)</h2>
+                    <p class="fragment">Responsive design (lots of iterations)</p>
+                    <p class="fragment">Revamped editorial system</p>
+                    <p class="fragment">Displaying Hi-Res content</p>
+                    <p class="fragment">No more legacy DB access \o/</p>
+                </section>
+                <section>
+                    <img src="img/new-webstore.png">
+                </section>
+                <section>
+                    <h2>But wait</h2>
+                    <img src="img/subir.png">
+                </section>
+                <section>
+                    <h2>IIS Caching</h2>
+                    <p class="fragment">A nightmare to debug deep inside IIS, on production under load only</p>
+                    <p class="fragment">Upgraded iisnode</p>
+                    <pre class="fragment"><code>
+&lt;action type="Rewrite" url="server.js?rewrittenFrom={REQUEST_URI}" /&gt;
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>A few other obstacles</h2>
+                </section>
+                <section>
+                    <h2>Error handling</h2>
+                    <img src="img/event-loop.png">
+                </section>
+                <section>
+                    <h2>Domains</h2>
+                    <pre><code>
+function uncaughtErrorMiddleware(req, res, next) {
+  var reqDomain = domain.create();
+  reqDomain.name = 'request';
+  reqDomain.traceId = req.traceId;
+
+  reqDomain.on('error',
+    createUncaughtErrorHandler(serverDomain, req, res));
+
+  reqDomain.run(next);
+}
+                    </code></pre>
+                    <p class="fragment">Deprecated :(</p>
+                </section>
+                <section>
+                    <ul>
+                        <li>Heavily convention based e.g. (err, res) - feels like the language should handle some of this and protect you from basic slip-ups</li>
+                        <li>Refactoring is tricky (well duh)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>What we like about node</h2>
+                    <p class="fragment">Simplicity</p>
+                    <p class="fragment">Malleability (caveat: strict JSHint, no this)</p>
+                    <p class="fragment">One language everywhere - particularly good for views. Opportunity for "Isomorphic" code</p>
+                    <p class="fragment">Cross-platform (linux dev environment)</p>
+                </section>
+                <section>
+                    <h2><3 Docker</h2>
+                    <pre><code>
+redis:
+  image: redis
+  ports:
+    - "6379:6379"
+sentinel:
+  image: joshula/redis-sentinel
+  links:
+    - redis
+  ports:
+    - "26379:26379"
+  command: sentinel monitor session redis 6379 1 --sentinel monitor objectcache redis 6379 1 -- sentinel down-after-milliseconds session 5000 -- sentinel down-after-milliseconds objectcache 5000
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Recommend?</h2>
+                    <p class="fragment">If dealing with front-end, and interactions are fairly simple</p>
+                    <p class="fragment">Known app size</p>
+                </section>
+                <section>
+                    <h2>Thanks for listening!</h2>
                 </section>
             </div>
         </div>
