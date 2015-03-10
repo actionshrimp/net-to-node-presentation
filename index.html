@@ -45,16 +45,16 @@
                     </p>
                 </section>
                 <section>
-                    <ul>
-                        <li>How we did it</li>
-                        <li>Why??</li>
-                    </ul>
-                </section>
-                <section>
                     <h2>7digital.com</h2>
                     <img src="img/consumer.jpg" style="height: 180px; border: none; margin-bottom: 0;" class="fragment">
                     <br />
                     <img src="img/webstore-on-api.svg" style="border: none; margin-top: 0">
+                </section>
+                <section>
+                    <ul>
+                        <li>How we did it</li>
+                        <li>Why??</li>
+                    </ul>
                 </section>
                 <section>
                     <h2>Before</h2>
@@ -134,7 +134,7 @@
                     <p class="fragment">Poor performance - spins up a whole MVC context each time</p>
                 </section>
                 <section>
-                    <p class="fragment">Had no plans to ditch backend, keen to ditch views</p>
+                    <p>Had no plans to ditch backend, keen to ditch views</p>
                     <p class="fragment">Markup needed reworking anyway for the re-design!</p>
                 </section>
                 <section>
@@ -161,7 +161,7 @@
                     <p class="fragment">(Also checked your IP was based in the 7d office)</p>
                 </section>
                 <section>
-                    <h2>Branching pretty hard</h2>
+                    <h2>Example page</h2>
                     <pre><code>
 [HasResponsiveView("sign-in")]
 public ActionResult Index(string returnUrl)
@@ -177,35 +177,82 @@ public ActionResult Index(string returnUrl)
 	return View("SignIn", signInViewModel);
 }
                     </code></pre>
+                    <p class="fragment">(Branching pretty hard)</p>
                 </section>
                 <section>
                     <ul>
-                        <li>Noticing it was quicker to implement pages in prototype</li>
+                        <li>Noticing it was quicker to wire in data in the prototype</li>
                         <li class="fragment">Bottlenecked a bit by CSS due to large overhaul</li>
                         <li class="fragment">FE guy WFH on a Mac - Windows environment a bit unfriendly</li>
-                        <li class="fragment">Tools worked better - SCSS build in particular (Vim)</li>
+                        <li class="fragment">Tools worked better - e.g. SCSS build (Vim)</li>
+                        <li class="fragment">Enjoyed it much more, boosted motivation for work which was often just reworking</li>
                     </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>What about shared and "infrastructure" code?</li>
+                        <li class="fragment">Lots needed changing</li>
+                        <li class="fragment">Needed refactoring</li>
+                    </ul>
+                    <img class="fragment" src="img/webstore-on-api-with-db.svg" style="border: none; margin-top: 0">
+                </section>
+                <section>
+                    <p>Decided to push ahead and just use node.js</p>
+                    <img src="img/node-js.jpg">
                 </section>
                 <section>
                     <h2>Putting something live</h2>
-                    <ul>
-                        <li>Public beta</li>
-                        <li class="fragment">Changed our magic header to be a cookie</li>
-                    </ul>
                 </section>
                 <section>
                     <h2>IISNode</h2>
-                    <p>(Used for hosting node apps on Azure)</p>
+                    <p>(Used by Azure for hosting node apps)</p>
                     <img src="img/iis-node.png">
+                </section>
+                <section>
+                    <h2>Oh yeahhh</h2>
+                    <img src="img/node-exe.png">
+                </section>
+                <section>
+                    <ul>
+                        <li>Check it works in live</li>
+                        <li class="fragment">Deploy smallest piece that gets heavy traffic</li>
+                        <li class="fragment">Chose AJAX "What's in my basket" endpoint
+                            <img src="img/basket-loading.png">
+                            <img src="img/basket.png">
+                        </li>
+                    </ul>
                 </section>
                 <section>
                     <pre><code>
 &lt;handlers&gt;
-  &lt;add name="iisnode" path="reboot/server.js"
+  &lt;add name="iisnode" path="redesign/server.js"
        verb="*" modules="iisnode" /&gt;
 &lt;/handlers&gt;
                     </code></pre>
                     <pre><code>
+&lt;rule name="node-for-basket" stopProcessing="true"&gt;
+  &lt;match url="^basket/items"/&gt;
+  &lt;action type="Rewrite" url="redesign/server.js" /&gt;
+&lt;/rule&gt;
+                    </code></pre>
+                </section>
+                <section>
+                    <img src="img/beta-header.png">
+                    <ul>
+                        <li>Public beta</li>
+                        <li class="fragment">Added a cookie to do the same thing as our magic header</li>
+                    </ul>
+                </section>
+                <section>
+                    <pre><code>
+&lt;rule name="set-responsive-views-if-beta-cookie-sent"&gt;
+  &lt;conditions&gt;
+    &lt;add input="{HTTP_COOKIE}" pattern="7digital_beta=" /&gt;
+  &lt;/conditions&gt;
+  &lt;serverVariables&gt;
+    &lt;set name="HTTP_X_7D_RESPONSIVE_VIEWS" value="true" /&gt;
+  &lt;/serverVariables&gt;
+&lt;/rule&gt;
 &lt;rule name="node-app-if-header" stopProcessing="true"&gt;
   &lt;conditions&gt;
     &lt;add input="{HTTP_X_7D_RESPONSIVE_VIEWS}" pattern="^t.*$" /&gt;
@@ -215,11 +262,65 @@ public ActionResult Index(string returnUrl)
                     </code></pre>
                 </section>
                 <section>
-                    <img src="img/node-exe.png">
+                    <img src="img/feedback.png">
                 </section>
                 <section>
-                    <!-- h2>PDiff tests</h2-->
-                    <!-- Mr Tickle sneaking into DB -->
+                    <p style="font-weight: bold; text-decoration: underline">Is there anything in particular you'd like to see on the new store?</p>
+                    <pre>
+BRING BACK THE FUNK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    </pre>
+                </section>
+                <section>
+                    <h2>Building away</h2>
+                    <ul>
+                        <li>Using Express (Sinatra-inspired)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Lots of 7D API calls</h2>
+                    <pre class="fragment"><code>
+router.get('/artist/:artistSlug/release/:releaseSlug',
+  handleReleasePage);
+
+function handleReleasePage(req, res, next) {
+
+  api.Catalogue().getReleaseIdByUrl({
+    artistSlug: req.params.artistSlug,
+    releaseSlug: req.params.releaseSlug
+  }, function (err, idLookupRes) {
+
+    if (err) { return next(err); }
+
+    api.Releases().getDetails({
+      releaseId: idLookupRes.release.id
+    }, function (err, release) {
+
+      if (err) { return next(err); }
+
+      var forView = map.fromRelease(res);
+      return res.render('release', forView);
+    });
+}
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Middleware</h2>
+                    <pre><code>
+function userDetails(req, res, next) {...}
+                    </code></pre>
+                    <pre><code>
+expressApp.use(shopConfig);
+expressApp.use(userDetails);
+...
+                    </code></pre>
+                </section>
+                <section>
+                    <img src="img/not-ready.png">
+                    <ul>
+                        <li class="fragment">People who opt in more tolerant</li>
+                        <li class="fragment">Easy to get straight back to the old version</li>
+                        <li class="fragment">Worked on getting critical path done first</li>
+                    </ul>
                 </section>
             </div>
         </div>
