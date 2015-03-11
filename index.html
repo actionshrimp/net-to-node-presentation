@@ -52,8 +52,10 @@
                 </section>
                 <section>
                     <ul>
-                        <li>How we did it</li>
-                        <li>Why??</li>
+                        <li>Rewrite from .NET to Node</li>
+                        <li class="fragment">Part of a full redesign</li>
+                        <li class="fragment">How we did it</li>
+                        <li class="fragment">Why??</li>
                     </ul>
                 </section>
                 <section>
@@ -122,7 +124,7 @@
                 </section>
                 <section>
                     <h2>Spark views</h2>
-                    <p class="fragment">Arbitrary code, e.g. RenderAction:</p>
+                    <p class="fragment">Markup with arbitrary code, e.g. RenderAction:</p>
                     <pre class="fragment" style="width: 90%;"><code>
 &lt;div class="first column width3"&gt;
 # Html.RenderAction("Index", "Tracks", new { artistId = Model.ReleaseTile.ArtistId, releaseId = Model.ReleaseTile.ProductId, salePrice = Model.ReleaseTile.PriceValue, productUrl = Model.ReleaseTile.ProductUrl, artistUrl = Model.ReleaseTile.DisplayedArtistUrl, displayedArtistName = Model.ReleaseTile.DisplayedArtistName, IsPreOrder = Model.IsPreOrder, CheckPurchaseDetails = Model.IncludesPurchaseDetails });
@@ -130,11 +132,12 @@
 # Html.RenderAction("Index", "AlsoByRelease", new { id = Model.ReleaseTile.ArtistId, BasedOnReleaseId = Model.ReleaseTile.ProductId });
 &lt;/div&gt;
                     </code></pre>
-                    <p class="fragment">(RenderAction has poor performance - spins up a whole MVC context each time)</p>
-                    <p class="fragment">Nice and modular, but hard to reason about whole pages. Never actually rendered a lot of the sub-Actions on their own</p>
+                    <p class="fragment">Nice and modular, right? <span class="fragment">Hard to reason about whole pages</span></p>
+                    <p class="fragment">Never actually rendered a lot of sub-Actions on their own</p>
+                    <p class="fragment">Poor performance - spins up a whole MVC context each time</p>
                 </section>
                 <section>
-                    <p>Had no plans to ditch backend, keen to ditch views</p>
+                    <p>Pretty happy, had no plans to ditch backend, keen to ditch views</p>
                     <p class="fragment">Markup needed reworking anyway for the re-design!</p>
                 </section>
                 <section>
@@ -154,11 +157,11 @@
                     <p>Fetching dummy data is a pain, just hook in this handy node 7d api client!</p>
                     <img class="fragment" src="img/node-7d-api-client.png">
                     <p class="fragment">Run on linux, no spinning up Windows VM...</p>
-                    <p class="fragment">FE guy WFH on a Mac - Windows environment a bit unfriendly</p>
+                    <p class="fragment">FE guy often WFH on a Mac - Windows environment a bit unfriendly</p>
                 </section>
                 <section>
                     <h2>Both designs in parallel - feature switch</h2>
-                    <p class="fragment">Looked out for X-7D-Responsive-Views header being sent (using header adjusting browser plugins)</p>
+                    <p class="fragment">Looked out for X-7D-Responsive-Views header being sent (using browser plugin)</p>
                     <p class="fragment">Switch out view engine based on that</p>
                     <p class="fragment">(Also checked your IP was based in the 7d office)</p>
                 </section>
@@ -183,16 +186,17 @@ public ActionResult Index(string returnUrl)
                 </section>
                 <section>
                     <ul>
-                        <li>Bottlenecked a bit by Design/CSS due to large overhaul</li>
+                        <li>Tools worked better - e.g. SCSS build</li>
+                        <li class="fragment">Bottlenecked at times by Design/CSS, keen to make iterations as quick as possible</li>
                         <li class="fragment">Noticing it was quicker to wire in data in the prototype</li>
-                        <li class="fragment">Tools worked better - e.g. SCSS build (+ Vim ;-))</li>
                         <li class="fragment">Enjoyed environment more, boosted motivation for sometimes tedious work</li>
+                        <li class="fragment">See where this is going...</li>
                     </ul>
                 </section>
                 <section>
                     <ul>
                         <li>What about shared and "infrastructure" code?</li>
-                        <li class="fragment">Lots needed changing / refactoring</li>
+                        <li class="fragment">Lots needed updating / refactoring</li>
                     </ul>
                     <img class="fragment" src="img/webstore-on-api-with-db.svg" style="border: none; margin-top: 0">
                 </section>
@@ -202,6 +206,8 @@ public ActionResult Index(string returnUrl)
                 </section>
                 <section>
                     <h2>Putting something live</h2>
+                    <p class="fragment">Validate node</p>
+                    <p class="fragment">On windows servers...</p>
                 </section>
                 <section>
                     <h2>IISNode</h2>
@@ -239,14 +245,14 @@ public ActionResult Index(string returnUrl)
                     </code></pre>
                 </section>
                 <section>
-                    <h2>Worked great :-)</h2>
+                    <h2>Worked great!</h2>
                     <p class="fragment">(Apart from the occasional node stack trace showing up in the site header...)</p>
                 </section>
                 <section>
                     <h2>Public beta (April '14)</h2>
                     <img src="img/beta-header.png">
                     <ul>
-                        <li class="fragment">Added a cookie to do the same thing as our magic header</li>
+                        <li class="fragment">Added a cookie to do enable the X-7D-Responsive-Views header</li>
                     </ul>
                 </section>
                 <section>
@@ -261,7 +267,7 @@ public ActionResult Index(string returnUrl)
 &lt;/rule&gt;
 &lt;rule name="node-app-if-header" stopProcessing="true"&gt;
   &lt;conditions&gt;
-    &lt;add input="{HTTP_X_7D_RESPONSIVE_VIEWS}" pattern="^t.*$" /&gt;
+    &lt;add input="{HTTP_X_7D_RESPONSIVE_VIEWS}" pattern="^true$" /&gt;
   &lt;/conditions&gt;
   &lt;action type="Rewrite" url="reboot/server.js" /&gt;
 &lt;/rule&gt;
@@ -279,7 +285,8 @@ BRING BACK THE FUNK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 <section>
                     <h2>Building away</h2>
                     <ul>
-                        <li>Using Express (Sinatra-inspired)</li>
+                        <li>Beefing up prototype snippets</li>
+                        <li class="fragment">Using Express (Sinatra-inspired)</li>
                     </ul>
                 </section>
                 <section>
@@ -363,11 +370,17 @@ expressApp.use(userDetails);
                     <img src="img/node-performance.png">
                 </section>
                 <section>
-                    <h2>A few other obstacles</h2>
+                    <h2>A few obstacles</h2>
                 </section>
                 <section>
                     <h2>Error handling</h2>
                     <img src="img/event-loop.png">
+                </section>
+                <section>
+                    <pre><code>function myCallback(err, res) { ... }</code></pre>
+                    <pre class="fragment"><code>stream.on('error', function (e) { ... })</code></pre>
+                    <pre class="fragment"><code>throw new Error('lol');</code></pre>
+                    <p class="fragment">Loss of context if error is not thrown by your own code</p>
                 </section>
                 <section>
                     <h2>Domains</h2>
@@ -394,8 +407,8 @@ function uncaughtErrorMiddleware(req, res, next) {
                 </section>
                 <section>
                     <h2>What we like about node</h2>
-                    <p class="fragment">Simplicity</p>
-                    <p class="fragment">Malleability</p>
+                    <p class="fragment">Simplicity / Malleability</p>
+                    <p class="fragment">Productive if you know what you're aiming for</p>
                     <p class="fragment">Great tooling</p>
                     <p class="fragment">npm package for everything</p>
                     <p class="fragment">One language everywhere - no context switch</p>
@@ -417,7 +430,7 @@ sentinel:
     - "26379:26379"
   command: sentinel monitor session redis 6379 1 --sentinel monitor objectcache redis 6379 1 -- sentinel down-after-milliseconds session 5000 -- sentinel down-after-milliseconds objectcache 5000
                     </code></pre>
-                    <p class="fragment">It is coming to windows though..</p>
+                    <p class="fragment">(Yeah, yeah, it is coming to windows..)</p>
                 </section>
                 <section>
                     <h2>Looking back</h2>

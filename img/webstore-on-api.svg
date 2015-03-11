@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="470.6875"
-   height="207.03125"
+   width="348.26334"
+   height="117.49387"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
@@ -19,21 +19,21 @@
      id="defs4" />
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#000000"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="371.70511"
-     inkscape:cy="55.831644"
+     inkscape:zoom="1"
+     inkscape:cx="347.77769"
+     inkscape:cy="51.54692"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1444"
      inkscape:window-height="853"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="27"
      inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -55,14 +55,14 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-96.03125,-164.46875)">
+     transform="translate(-97.236975,-189.51504)">
     <rect
        style="fill:none;stroke:#ffffff;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect3971"
        width="105.71429"
        height="50"
-       x="396"
-       y="-325.00891"
+       x="336"
+       y="-305.00891"
        transform="scale(1,-1)"
        inkscape:export-filename="/Users/dave/dev/presentations/net-to-node-presentation/img/webstore-on-api.svg.png"
        inkscape:export-xdpi="90"
@@ -72,19 +72,19 @@
        inkscape:export-xdpi="90"
        inkscape:export-filename="/Users/dave/dev/presentations/net-to-node-presentation/img/webstore-on-api.svg.png"
        transform="scale(1,-1)"
-       y="-325.00891"
-       x="278"
+       y="-305.00891"
+       x="218"
        height="50"
        width="105.71429"
        id="rect3969"
        style="fill:none;stroke:#ffffff;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none" />
     <rect
-       style="fill:none;stroke:#ffffff;stroke-width:4.22363520000000037;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#ffffff;stroke-width:4.2236352;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect3757"
        width="344.0397"
        height="48.57143"
-       x="159.34879"
-       y="211.62686"
+       x="99.348793"
+       y="191.62686"
        inkscape:export-filename="/Users/dave/dev/presentations/net-to-node-presentation/img/webstore-on-api.svg.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -93,8 +93,8 @@
        id="rect3759"
        width="105.71429"
        height="50"
-       x="160"
-       y="-325.00891"
+       x="100"
+       y="-305.00891"
        transform="scale(1,-1)"
        inkscape:export-filename="/Users/dave/dev/presentations/net-to-node-presentation/img/webstore-on-api.svg.png"
        inkscape:export-xdpi="90"
@@ -102,8 +102,8 @@
     <text
        xml:space="preserve"
        style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:#ffffff;font-family:Arial;-inkscape-font-specification:Arial"
-       x="200.85129"
-       y="312.89368"
+       x="140.85129"
+       y="292.89368"
        id="text3811"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/Users/dave/dev/presentations/net-to-node-presentation/img/webstore-on-api.svg.png"
@@ -111,13 +111,13 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3813"
-         x="200.85129"
-         y="312.89368">A</tspan></text>
+         x="140.85129"
+         y="292.89368">A</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:#ffffff;font-family:Arial;-inkscape-font-specification:Arial"
-       x="317.70758"
-       y="312.89368"
+       x="257.70758"
+       y="292.89368"
        id="text3860"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/Users/dave/dev/presentations/net-to-node-presentation/img/webstore-on-api.svg.png"
@@ -125,13 +125,13 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3862"
-         x="317.70758"
-         y="312.89368">P</tspan></text>
+         x="257.70758"
+         y="292.89368">P</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:#ffffff;font-family:Arial;-inkscape-font-specification:Arial"
-       x="444.43506"
-       y="312.89368"
+       x="384.43506"
+       y="292.89368"
        id="text3864"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/Users/dave/dev/presentations/net-to-node-presentation/img/webstore-on-api.svg.png"
@@ -139,13 +139,13 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3866"
-         x="444.43506"
-         y="312.89368">I</tspan></text>
+         x="384.43506"
+         y="292.89368">I</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:36.38262558000000269px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:#ffffff;font-family:Arial;-inkscape-font-specification:Arial"
-       x="234.55852"
-       y="245.10594"
+       style="font-size:36.38262558px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:#ffffff;font-family:Arial;-inkscape-font-specification:Arial"
+       x="174.55853"
+       y="225.10594"
        id="text3868"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/Users/dave/dev/presentations/net-to-node-presentation/img/webstore-on-api.svg.png"
@@ -153,7 +153,7 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3870"
-         x="234.55852"
-         y="245.10594">7digital.com</tspan></text>
+         x="174.55853"
+         y="225.10594">7digital.com</tspan></text>
   </g>
 </svg>
