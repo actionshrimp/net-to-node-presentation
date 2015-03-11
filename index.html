@@ -145,7 +145,7 @@
                     <img src="img/nustache.png">
                 </section>
                 <section>
-                    <p>No arbitrary code was super appealing after Spark (although won over by React.js's approach these days..)</p>
+                    <p>No arbitrary code was appealing after Spark (although personally won over by React's approach these days..)</p>
                     <p class="fragment">More testable - everything in view models</p>
                     <p class="fragment">Prototype designs with node mustache (we used Grunt for FE build anyway)</p>
                     <p class="fragment">Use dummy data to mock up views</p>
@@ -154,6 +154,7 @@
                     <p>Fetching dummy data is a pain, just hook in this handy node 7d api client!</p>
                     <img class="fragment" src="img/node-7d-api-client.png">
                     <p class="fragment">Run on linux, no spinning up Windows VM...</p>
+                    <p class="fragment">FE guy WFH on a Mac - Windows environment a bit unfriendly</p>
                 </section>
                 <section>
                     <h2>Both designs in parallel - feature switch</h2>
@@ -182,18 +183,16 @@ public ActionResult Index(string returnUrl)
                 </section>
                 <section>
                     <ul>
-                        <li>Noticing it was quicker to wire in data in the prototype</li>
-                        <li class="fragment">Bottlenecked a bit by CSS due to large overhaul</li>
-                        <li class="fragment">FE guy WFH on a Mac - Windows environment a bit unfriendly</li>
-                        <li class="fragment">Tools worked better - e.g. SCSS build (Vim)</li>
-                        <li class="fragment">Enjoyed it much more, boosted motivation for work which was often just reworking</li>
+                        <li>Bottlenecked a bit by Design/CSS due to large overhaul</li>
+                        <li class="fragment">Noticing it was quicker to wire in data in the prototype</li>
+                        <li class="fragment">Tools worked better - e.g. SCSS build (+ Vim ;-))</li>
+                        <li class="fragment">Enjoyed environment more, boosted motivation for sometimes tedious work</li>
                     </ul>
                 </section>
                 <section>
                     <ul>
                         <li>What about shared and "infrastructure" code?</li>
-                        <li class="fragment">Lots needed changing</li>
-                        <li class="fragment">Needed refactoring</li>
+                        <li class="fragment">Lots needed changing / refactoring</li>
                     </ul>
                     <img class="fragment" src="img/webstore-on-api-with-db.svg" style="border: none; margin-top: 0">
                 </section>
@@ -211,8 +210,8 @@ public ActionResult Index(string returnUrl)
                 </section>
                 <section>
                     <h2>Oh yeahhh</h2>
-                    <p>Also handles multiple node processes per server/LBing them</p>
                     <img src="img/node-exe.png">
+                    <p class="fragment">Also handles multiple node processes per server/LBing them</p>
                 </section>
                 <section>
                     <h2>End of Feb '14</h2>
@@ -240,9 +239,13 @@ public ActionResult Index(string returnUrl)
                     </code></pre>
                 </section>
                 <section>
+                    <h2>Worked great :-)</h2>
+                    <p class="fragment">(Apart from the occasional node stack trace showing up in the site header...)</p>
+                </section>
+                <section>
+                    <h2>Public beta (April '14)</h2>
                     <img src="img/beta-header.png">
                     <ul>
-                        <li>Public beta (April '14)</li>
                         <li class="fragment">Added a cookie to do the same thing as our magic header</li>
                     </ul>
                 </section>
@@ -333,7 +336,7 @@ expressApp.use(userDetails);
                     <p class="fragment">No more legacy DB access \o/</p>
                 </section>
                 <section>
-                    <img src="img/new-webstore.png">
+                    <img src="img/webstore-now.png">
                 </section>
                 <section>
                     <h2>But wait</h2>
@@ -346,6 +349,18 @@ expressApp.use(userDetails);
                     <pre class="fragment"><code>
 &lt;action type="Rewrite" url="server.js?rewrittenFrom={REQUEST_URI}" /&gt;
                     </code></pre>
+                </section>
+                <section>
+                    <img src="img/cpu-go-live.png">
+                    <pre class="fragment"><code>
+&lt;iisnode nodeProcessCountPerApplication="4" ../&gt;
+                    </code></pre>
+                </section>
+                <section>
+                    <img src="img/net-performance.png">
+                </section>
+                <section>
+                    <img src="img/node-performance.png">
                 </section>
                 <section>
                     <h2>A few other obstacles</h2>
@@ -369,18 +384,21 @@ function uncaughtErrorMiddleware(req, res, next) {
 }
                     </code></pre>
                     <p class="fragment">Deprecated :(</p>
+                    <p class="fragment">Zones? Async Listener?</p>
                 </section>
                 <section>
                     <ul>
-                        <li>Heavily convention based e.g. (err, res) - feels like the language should handle some of this and protect you from basic slip-ups</li>
+                        <li>Heavily convention based e.g. (err, res) - the language should protect you from basic slip-ups</li>
                         <li>Refactoring is tricky (well duh)</li>
                     </ul>
                 </section>
                 <section>
                     <h2>What we like about node</h2>
                     <p class="fragment">Simplicity</p>
-                    <p class="fragment">Malleability (caveat: strict JSHint, no this)</p>
-                    <p class="fragment">One language everywhere - particularly good for views. Opportunity for "Isomorphic" code</p>
+                    <p class="fragment">Malleability</p>
+                    <p class="fragment">Great tooling</p>
+                    <p class="fragment">npm package for everything</p>
+                    <p class="fragment">One language everywhere - no context switch</p>
                     <p class="fragment">Cross-platform (linux dev environment)</p>
                 </section>
                 <section>
@@ -390,6 +408,7 @@ redis:
   image: redis
   ports:
     - "6379:6379"
+
 sentinel:
   image: joshula/redis-sentinel
   links:
@@ -398,11 +417,13 @@ sentinel:
     - "26379:26379"
   command: sentinel monitor session redis 6379 1 --sentinel monitor objectcache redis 6379 1 -- sentinel down-after-milliseconds session 5000 -- sentinel down-after-milliseconds objectcache 5000
                     </code></pre>
+                    <p class="fragment">It is coming to windows though..</p>
                 </section>
                 <section>
-                    <h2>Recommend?</h2>
-                    <p class="fragment">If dealing with front-end, and interactions are fairly simple</p>
-                    <p class="fragment">Known app size</p>
+                    <h2>Looking back</h2>
+                    <p class="fragment">Should have taken more screenshots...</p>
+                    <p class="fragment">Old project <3 ?</p>
+                    <p class="fragment">Much more tooling / deployment choice now</p>
                 </section>
                 <section>
                     <h2>Thanks for listening!</h2>
