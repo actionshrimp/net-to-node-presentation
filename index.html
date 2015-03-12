@@ -45,8 +45,17 @@
                     </p>
                 </section>
                 <section>
+                    <h2>7digital</h2>
+                    <p>Music API</p>
+                    <ul>
+                        <li class="fragment">Catalogue</li>
+                        <li class="fragment">Search</li>
+                        <li class="fragment">Downloads / Streaming</li>
+                    </ul>
+                </section>
+                <section>
                     <h2>7digital.com</h2>
-                    <img src="img/consumer.jpg" style="height: 180px; border: none; margin-bottom: 0;" class="fragment">
+                    <img src="img/consumer.jpg" style="height: 180px; border: none; margin-bottom: 0;">
                     <br />
                     <img src="img/webstore-on-api.svg" style="border: none; margin-top: 0">
                 </section>
@@ -61,6 +70,29 @@
                 <section>
                     <h2>Before</h2>
                     <img src="img/previous-dotcom.png">
+                </section>
+                <section>
+                    <h2>State of the code</h2>
+                    <ul>
+                        <li class="fragment">.NET project, pretty good shape, well tested</li>
+                        <li class="fragment">Performance wasn't the greatest - e.g. No async/await to make parallel API calls (old .NET version)</li>
+                        <li class="fragment">CSS wasn't very modular due to the way it had grown</li>
+                        <li class="fragment">Markup pretty messy, no clear class structure</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Spark views</h2>
+                    <p class="fragment">Markup with arbitrary code, e.g. RenderAction:</p>
+                    <pre class="fragment" style="width: 90%;"><code>
+&lt;div class="first column width3"&gt;
+# Html.RenderAction("Index", "Tracks", new { artistId = Model.ReleaseTile.ArtistId, releaseId = Model.ReleaseTile.ProductId, salePrice = Model.ReleaseTile.PriceValue, productUrl = Model.ReleaseTile.ProductUrl, artistUrl = Model.ReleaseTile.DisplayedArtistUrl, displayedArtistName = Model.ReleaseTile.DisplayedArtistName, IsPreOrder = Model.IsPreOrder, CheckPurchaseDetails = Model.IncludesPurchaseDetails });
+
+# Html.RenderAction("Index", "AlsoByRelease", new { id = Model.ReleaseTile.ArtistId, BasedOnReleaseId = Model.ReleaseTile.ProductId });
+&lt;/div&gt;
+                    </code></pre>
+                    <p class="fragment">Nice and modular, right? <span class="fragment">Hard to reason about whole pages</span></p>
+                    <p class="fragment">Never actually rendered a lot of sub-Actions on their own</p>
+                    <p class="fragment">Poor performance - spins up a whole MVC context each time</p>
                 </section>
                 <section>
                     <h2>On mobile...<h2>
@@ -88,15 +120,6 @@
                     <img src="img/webstore-desktop-mobile.png">
                 </section>
                 <section>
-                    <h2>State of the frontend</h2>
-                    <ul>
-                        <li class="fragment">Frontend code a bit underloved</li>
-                        <li class="fragment">Styles in particular</li>
-                        <li class="fragment">Markup pretty messy, no clear class structure</li>
-                        <li class="fragment">Wasn't hugely modular due to the way it had grown</li>
-                    </ul>
-                </section>
-                <section>
                     <h2>Incremental rollout</h2>
                 </section>
                 <section>
@@ -104,40 +127,19 @@
                     <img src="img/livesearch.png">
                 </section>
                 <section>
-                    <h2>But no clear path</h2>
-                    <img src="img/no-clear-path.jpg" style="width: 50%; float: left;">
-                    <ul style="float: right; width: 40%">
-                        <li class="fragment">How to avoid clashes between designs? Particularly for bigger chunks of the page, layout etc.</li>
-                        <li class="fragment">Refactoring CSS - painful!</li>
-                    </ul>
-                </section>
-                <section>
                     <h2>No exciting Hi-Res launch :(</h2>
                     <img src="img/product-launch.jpg">
                 </section>
                 <section>
-                    <h2>State of the backend</h2>
-                    <ul>
-                        <li class="fragment">.NET project, pretty good shape, well tested</li>
-                        <li class="fragment">Performance wasn't the greatest - e.g. No async/await to make parallel API calls (old .NET version)</li>
+                    <h2>No clear path</h2>
+                    <img src="img/no-clear-path.jpg" style="width: 50%; float: left;">
+                    <ul style="float: right; width: 40%">
+                        <li class="fragment">How to avoid clashes between designs? Particularly for bigger chunks of the page, layout etc. Lots of extra design work</li>
+                        <li class="fragment">Refactoring CSS - painful!</li>
                     </ul>
                 </section>
                 <section>
-                    <h2>Spark views</h2>
-                    <p class="fragment">Markup with arbitrary code, e.g. RenderAction:</p>
-                    <pre class="fragment" style="width: 90%;"><code>
-&lt;div class="first column width3"&gt;
-# Html.RenderAction("Index", "Tracks", new { artistId = Model.ReleaseTile.ArtistId, releaseId = Model.ReleaseTile.ProductId, salePrice = Model.ReleaseTile.PriceValue, productUrl = Model.ReleaseTile.ProductUrl, artistUrl = Model.ReleaseTile.DisplayedArtistUrl, displayedArtistName = Model.ReleaseTile.DisplayedArtistName, IsPreOrder = Model.IsPreOrder, CheckPurchaseDetails = Model.IncludesPurchaseDetails });
-
-# Html.RenderAction("Index", "AlsoByRelease", new { id = Model.ReleaseTile.ArtistId, BasedOnReleaseId = Model.ReleaseTile.ProductId });
-&lt;/div&gt;
-                    </code></pre>
-                    <p class="fragment">Nice and modular, right? <span class="fragment">Hard to reason about whole pages</span></p>
-                    <p class="fragment">Never actually rendered a lot of sub-Actions on their own</p>
-                    <p class="fragment">Poor performance - spins up a whole MVC context each time</p>
-                </section>
-                <section>
-                    <p>Pretty happy, had no plans to ditch backend, keen to ditch views</p>
+                    <p>Pretty happy with the backend, keen to ditch views</p>
                     <p class="fragment">Markup needed reworking anyway for the re-design!</p>
                 </section>
                 <section>
@@ -148,7 +150,7 @@
                     <img src="img/nustache.png">
                 </section>
                 <section>
-                    <p>No arbitrary code was appealing after Spark (although personally won over by React's approach these days..)</p>
+                    <p>No arbitrary code was appealing after Spark</p>
                     <p class="fragment">More testable - everything in view models</p>
                     <p class="fragment">Prototype designs with node mustache (we used Grunt for FE build anyway)</p>
                     <p class="fragment">Use dummy data to mock up views</p>
@@ -252,7 +254,7 @@ public ActionResult Index(string returnUrl)
                     <h2>Public beta (April '14)</h2>
                     <img src="img/beta-header.png">
                     <ul>
-                        <li class="fragment">Added a cookie to do enable the X-7D-Responsive-Views header</li>
+                        <li class="fragment">Added a cookie to enable the X-7D-Responsive-Views header</li>
                     </ul>
                 </section>
                 <section>
@@ -341,6 +343,10 @@ expressApp.use(userDetails);
                     <p class="fragment">Revamped editorial system</p>
                     <p class="fragment">Displaying Hi-Res content</p>
                     <p class="fragment">No more legacy DB access \o/</p>
+                    <p class="fragment">Way better logging/monitoring</p>
+                </section>
+                <section>
+                    <img src="img/kibana.png">
                 </section>
                 <section>
                     <img src="img/webstore-now.png">
@@ -378,7 +384,6 @@ expressApp.use(userDetails);
                 </section>
                 <section>
                     <pre><code>function myCallback(err, res) { ... }</code></pre>
-                    <pre class="fragment"><code>stream.on('error', function (e) { ... })</code></pre>
                     <pre class="fragment"><code>throw new Error('lol');</code></pre>
                     <p class="fragment">Loss of context if error is not thrown by your own code</p>
                 </section>
@@ -402,13 +407,14 @@ function uncaughtErrorMiddleware(req, res, next) {
                 <section>
                     <ul>
                         <li>Heavily convention based e.g. (err, res) - the language should protect you from basic slip-ups</li>
+                        <li>The convention leads to lots of nesting (callback hell)</li>
                         <li>Refactoring is tricky (well duh)</li>
                     </ul>
                 </section>
                 <section>
                     <h2>What we like about node</h2>
                     <p class="fragment">Simplicity / Malleability</p>
-                    <p class="fragment">Productive if you know what you're aiming for</p>
+                    <p class="fragment">Productive if you know what architecture you're aiming for</p>
                     <p class="fragment">Great tooling</p>
                     <p class="fragment">npm package for everything</p>
                     <p class="fragment">One language everywhere - no context switch</p>
